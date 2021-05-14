@@ -9,8 +9,8 @@ Docker Deploy Commands
 * vi Dockerfile
 * cat Dockerfile
 
-FROM nginx
-COPY . /usr/share/nginx/html
+> FROM nginx
+> COPY . /usr/share/nginx/html
 
 * docker build -t websitedeploy .
 * docker images
