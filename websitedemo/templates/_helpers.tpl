@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "tomcat-nginx.name" -}}
+{{- define "websitedemo.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "tomcat-nginx.fullname" -}}
+{{- define "websitedemo.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "tomcat-nginx.chart" -}}
+{{- define "websitedemo.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "tomcat-nginx.labels" -}}
-helm.sh/chart: {{ include "tomcat-nginx.chart" . }}
-{{ include "tomcat-nginx.selectorLabels" . }}
+{{- define "websitedemo.labels" -}}
+helm.sh/chart: {{ include "websitedemo.chart" . }}
+{{ include "websitedemo.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "tomcat-nginx.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "tomcat-nginx.name" . }}
+{{- define "websitedemo.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "websitedemo.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "tomcat-nginx.serviceAccountName" -}}
+{{- define "websitedemo.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "tomcat-nginx.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "websitedemo.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
